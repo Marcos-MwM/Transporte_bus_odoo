@@ -1,0 +1,91 @@
+<odoo>
+
+    <!-- FORM VIEW HEREDADA -->
+
+    <record id="seq_transporte_ruta" model="ir.sequence">
+        <field name="name">Secuencia Bus</field>
+        <field name="code">transporte.ruta</field>
+        <field name="prefix">BUS</field>
+        <field name="padding">4</field>
+        <field name="number_next">1</field>
+        <field name="number_increment">1</field>
+    </record>
+
+    <record id="view_transporte_cliente_extension_form" model="ir.ui.view">
+        <field name="name">transporte.clientes.extension.form</field>
+        <field name="model">transporte.publico</field>
+        <field name="inherit_id" ref="Transporte_clientes.view_transporte_publico_form"/>
+
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+
+                <notebook>
+
+                    <!-- PESTAÑA DE RUTA -->
+                    <page string="Información de Ruta">
+                        <group>
+
+                            <group string="Datos del Viaje">
+                                <field name="ruta_id"/>
+                                <field name="origen" readonly="1"/>
+                                <field name="destino" readonly="1"/>
+                                <field name="pasaje" readonly="1"/>
+                            </group>
+
+                            <group string="Descuentos y Pago">
+                                <field name="total_de_descuento"/>
+                                <field name="precio_final" readonly="1"/>
+                            </group>
+
+                        </group>
+                    </page>
+
+                    <!-- PESTAÑA DE IMAGEN -->
+                    <page string="Referencia Visual">
+                        <group>
+                            <field name="imagen_de_referencia"
+                                   widget="image"
+                                   class="oe_avatar"/>
+                        </group>
+                    </page>
+
+                </notebook>
+
+            </xpath>
+
+            <!--vista de pago-->
+
+            <xpath expr="//group" position="inside">
+                <field name="metodo_pago"/>
+                <field name="estado_pago" />
+                <field name="fecha_pago" />
+                <field name="numero_comprobante" />
+            </xpath>
+
+
+
+        </field>
+    </record>
+
+
+    <!-- LIST VIEW HEREDADA -->
+    <record id="view_transporte_cliente_extension_list" model="ir.ui.view">
+        <field name="name">transporte.clientes.extension.list</field>
+        <field name="model">transporte.publico</field>
+        <field name="inherit_id" ref="Transporte_clientes.view_transporte_publico_list"/>
+
+        <field name="arch" type="xml">
+            <xpath expr="//list" position="inside">
+                <field name="ruta_id"/>
+                <field name="origen"/>
+                <field name="destino"/>
+                <field name="pasaje"/>
+                <field name="total_de_descuento"/>
+                <field name="precio_final"/>
+            </xpath>
+        </field>
+    </record>
+
+
+
+</odoo>

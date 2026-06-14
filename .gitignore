@@ -1,0 +1,14 @@
+*
+!.gitignore
+!Transporte_bus/
+!Transporte_bus/**
+!Transporte_clientes/
+!Transporte_clientes/**
+!Transporte_clientes_extension/
+!Transporte_clientes_extension/**
+
+**/_pycache_/
+*.pyc
+*.pyo
+*.pyd
+
