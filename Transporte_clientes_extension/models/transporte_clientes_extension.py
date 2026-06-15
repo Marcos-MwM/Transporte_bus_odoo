@@ -56,6 +56,7 @@ class TransporteClienteExtension(models.Model):
         ],
         string="Método de Pago"
     )
+
     estado_pago = fields.Selection(
         selection=[
             ('pendiente',   'Pendiente'),
@@ -74,6 +75,17 @@ class TransporteClienteExtension(models.Model):
         required=True
     )
 
+    def action_pagado(self):
+        for record in self:
+            record.estado_pago = 'pagado'
+
+    def action_pendiente(self):
+        for record in self:
+            record.estado_pago = 'pendiente'
+
+    def action_reembolsado(self):
+        for record in self:
+            record.estado_pago = 'reembolsado'
     # ── Compute ────────────────────────────────────────────
     @api.depends('discapacidad', 'estudiante', 'edad')
     def _compute_descuento(self):

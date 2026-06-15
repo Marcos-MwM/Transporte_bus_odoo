@@ -59,11 +59,9 @@
         <field name="view_mode">list,form</field>
     </record>
 
-    <menuitem id="menu_transporte_publico_root" name="Registro de buses"/>
-
     <menuitem id="menu_transporte_publico"
               name="Rutas"
-              parent="menu_transporte_publico_root"
+              parent="Transporte_clientes.menu_transporte_publico_root"
               action="action_transporte_publico"
               sequence="10"/>
 

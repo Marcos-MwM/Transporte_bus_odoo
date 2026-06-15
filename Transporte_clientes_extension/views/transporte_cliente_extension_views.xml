@@ -17,6 +17,7 @@
         <field name="inherit_id" ref="Transporte_clientes.view_transporte_publico_form"/>
 
         <field name="arch" type="xml">
+
             <xpath expr="//sheet" position="inside">
 
                 <notebook>
@@ -55,14 +56,32 @@
 
             <!--vista de pago-->
 
-            <xpath expr="//group" position="inside">
-                <field name="metodo_pago"/>
-                <field name="estado_pago" />
-                <field name="fecha_pago" />
-                <field name="numero_comprobante" />
+            <xpath expr="//sheet" position="inside">
+                <group string='Información de pago'>
+                    <field name="metodo_pago"/>
+                    <field name="estado_pago" widget='statusbar'/>
+                    <field name="fecha_pago" />
+                    <field name="numero_comprobante" />
+                    <button 
+                    name='action_pagado'
+                    string='Pagar'
+                    class='btn-success'
+                    type='object'
+                    invisible="estado_pago == 'pagado'"/>
+                    <button 
+                    name='action_pendiente'
+                    string='Pendiente'
+                    class='btn-info'
+                    type='object'
+                    invisible="estado_pago == 'pendiente'"/>
+                    <button 
+                    name='action_reembolsado'
+                    string='Reembolsado'
+                    class='btn-danger'
+                    type='object'
+                    invisible="estado_pago == 'reembolsado'"/>
+                </group>
             </xpath>
-
-
 
         </field>
     </record>
@@ -82,7 +101,29 @@
                 <field name="pasaje"/>
                 <field name="total_de_descuento"/>
                 <field name="precio_final"/>
+                <field name='estado_pago' widget='badge'
+                decoration-success="estado_pago == 'pagado'"
+                decoration-info="estado_pago == 'pendiente'"
+                decoration-danger="estado_pago == 'reembolsado'"/>
             </xpath>
+        </field>
+    </record>
+
+    <record id="filtro_transporte_cliente_extension" model='ir.ui.view'>
+        <field name='name'>filtro.transporte.cliente.extension</field>
+        <field name='model'>transporte.publico</field>
+        <field name='arch' type='xml'>
+        <search>
+            <filter name='Pagados'
+                string='Pagados'
+                domain="[('estado_pago', '=', 'pagado')]"/>
+            <filter name='Pendiente'
+                string='Pendiente'
+                domain="[('estado_pago', '=', 'pendiente')]"/>
+            <filter name='Reembolso'
+                string='Reembolso'
+                domain="[('estado_pago', '=', 'reembolsado')]"/>
+        </search>
         </field>
     </record>
 

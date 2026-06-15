@@ -6,7 +6,7 @@
     'author': 'Grupo',
     'category': 'Sales',
     'license': 'LGPL-3',
-    'depends': ['bus'],
+    'depends': ['bus','Transporte_clientes'],
     'data': {
         'security/ir.model.access.csv',
         'views/transporte_publico_views.xml',
