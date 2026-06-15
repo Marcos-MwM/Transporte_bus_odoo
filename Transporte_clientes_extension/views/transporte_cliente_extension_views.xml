@@ -1,5 +1,5 @@
 <odoo>
-
+    <!--Módulo Desarrollado por Marcos Mena-->
     <!-- FORM VIEW HEREDADA -->
 
     <record id="seq_transporte_ruta" model="ir.sequence">
